@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="label_tomorrow">Завтра</string>
+    <string name="label_today">Сегодня</string>
+</resources>
