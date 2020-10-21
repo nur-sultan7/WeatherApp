@@ -1,30 +1,43 @@
 package com.example.weatherapp.adapters;
 
+import android.app.Activity;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.pojo.WeatherResponse;
-import com.squareup.picasso.Picasso;
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.MainWeatherViewHolder>  {
     List<WeatherResponse> weatherResponseList;
+    Activity activity;
 
-    public MainWeatherAdapter() {
+    public MainWeatherAdapter(Activity activity) {
         this.weatherResponseList = new ArrayList<>();
+        this.activity=activity;
     }
 
     public void setWeatherResponseList(List<WeatherResponse> weatherResponseList) {
         this.weatherResponseList = weatherResponseList;
+        notifyDataSetChanged();
+    }
+    public void addItemToWeatherResponseList(WeatherResponse weatherResponse)
+    {
+        weatherResponseList.add(weatherResponse);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -39,10 +52,25 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
     public void onBindViewHolder(@NonNull MainWeatherViewHolder holder, int position) {
         WeatherResponse weatherResponse = weatherResponseList.get(position);
         holder.cityName.setText(weatherResponse.getInfo().getTzinfo().getName());
-        Picasso.get()
-                .load(weatherResponse.getFact().getWeatherIcon())
-                .into(holder.cityWeatherIcon);
-}
+        String iconWeatherString= weatherResponse.getFact().getWeatherIcon();
+        GlideToVectorYou
+                .init()
+                .with(activity)
+                .withListener(new GlideToVectorYouListener() {
+                    @Override
+                    public void onLoadFailed() {
+                        Toast.makeText(activity, "Load failed", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResourceReady() {
+                        Toast.makeText(activity, "Image ready", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                //.setPlaceHolder(placeholderLoading, placeholderError)
+                .load(Uri.parse(iconWeatherString), holder.cityWeatherIcon);
+
+    }
 
     @Override
     public int getItemCount() {

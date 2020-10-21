@@ -20,12 +20,17 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainViewModel extends AndroidViewModel {
-    private MutableLiveData<List<WeatherResponse>> liveDataWeatherResponse;
+    private MutableLiveData<WeatherResponse> DataWeatherResponse;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
-        liveDataWeatherResponse=new MutableLiveData<>();
+        DataWeatherResponse =new MutableLiveData<>();
     }
+
+    public LiveData<WeatherResponse> getDataWeatherResponse() {
+        return DataWeatherResponse;
+    }
+
     public void loadData()
     {
         ApiFactory apiFactory = new ApiFactory();
@@ -37,7 +42,7 @@ public class MainViewModel extends AndroidViewModel {
                 .subscribe(new Consumer<WeatherResponse>() {
                     @Override
                     public void accept(WeatherResponse weatherResponse) throws Exception {
-                        liveDataWeatherResponse.getValue().add(weatherResponse);
+                        DataWeatherResponse.postValue(weatherResponse);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -45,6 +50,7 @@ public class MainViewModel extends AndroidViewModel {
 
                     }
                 });
+        compositeDisposable.add(disposable);
 
     }
 }
