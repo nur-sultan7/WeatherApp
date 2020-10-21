@@ -25,5 +25,8 @@ public class ApiFactory {
         return apiFactory;
     }
 
-   
+   public ApiService getApiService()
+   {
+       return retrofit.create(ApiService.class);
+   }
 }

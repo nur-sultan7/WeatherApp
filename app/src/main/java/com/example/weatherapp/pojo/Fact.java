@@ -5,6 +5,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class Fact {
 
+    private String weatherIcon= "https://yastatic.net/weather/i/icons/blueye/color/svg/%s.svg";
+
+    public String getWeatherIcon() {
+        return String.format(weatherIcon,icon);
+    }
+
     @SerializedName("temp")
     @Expose
     private int temp;
@@ -19,7 +25,7 @@ public class Fact {
     private String condition;
     @SerializedName("wind_speed")
     @Expose
-    private int windSpeed;
+    private double windSpeed;
     @SerializedName("wind_gust")
     @Expose
     private double windGust;
@@ -98,11 +104,11 @@ public class Fact {
         this.condition = condition;
     }
 
-    public int getWindSpeed() {
+    public double getWindSpeed() {
         return windSpeed;
     }
 
-    public void setWindSpeed(int windSpeed) {
+    public void setWindSpeed(double windSpeed) {
         this.windSpeed = windSpeed;
     }
 

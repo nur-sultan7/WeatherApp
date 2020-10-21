@@ -7,7 +7,6 @@ import java.util.List;
 
 public class WeatherResponse {
 
-
     @SerializedName("now")
     @Expose
     private int now;
