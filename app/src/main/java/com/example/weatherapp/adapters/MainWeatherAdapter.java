@@ -24,14 +24,22 @@ import java.util.List;
 public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.MainWeatherViewHolder>  {
     List<WeatherResponse> weatherResponseList;
     Activity activity;
+    private boolean isToday;
+
+    public void setToday(boolean today) {
+        isToday = today;
+        notifyDataSetChanged();
+    }
 
     public MainWeatherAdapter(Activity activity) {
         this.weatherResponseList = new ArrayList<>();
         this.activity=activity;
+
     }
 
-    public void setWeatherResponseList(List<WeatherResponse> weatherResponseList) {
+    public void setWeatherResponseList(List<WeatherResponse> weatherResponseList, boolean isToday) {
         this.weatherResponseList = weatherResponseList;
+        this.isToday=isToday;
         notifyDataSetChanged();
     }
     public void addItemToWeatherResponseList(WeatherResponse weatherResponse)
@@ -52,7 +60,7 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
     public void onBindViewHolder(@NonNull MainWeatherViewHolder holder, int position) {
         WeatherResponse weatherResponse = weatherResponseList.get(position);
         holder.cityName.setText(weatherResponse.getInfo().getTzinfo().getName());
-        int temp = weatherResponse.getFact().getTemp();
+        int temp =isToday? weatherResponse.getFact().getTemp(): weatherResponse.getForecasts().get(0).getParts().getDayShort().getTemp();
         String tempString;
         if (temp>0)
             tempString="+"+temp;
