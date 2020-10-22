@@ -9,8 +9,10 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.weatherapp.api.ApiFactory;
 import com.example.weatherapp.api.ApiService;
+import com.example.weatherapp.data.City;
 import com.example.weatherapp.pojo.WeatherResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -20,37 +22,46 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainViewModel extends AndroidViewModel {
-    private MutableLiveData<WeatherResponse> DataWeatherResponse;
+    private MutableLiveData<List<WeatherResponse>> dataWeatherResponse;
+    private List<WeatherResponse> weatherResponseList;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
-        DataWeatherResponse =new MutableLiveData<>();
+        dataWeatherResponse =new MutableLiveData<>();
     }
 
-    public LiveData<WeatherResponse> getDataWeatherResponse() {
-        return DataWeatherResponse;
+    public LiveData<List<WeatherResponse>> getDataWeatherResponse() {
+        return dataWeatherResponse;
     }
 
-    public void loadData()
+    public void loadData(List<City> citiesList)
     {
+        weatherResponseList = new ArrayList<>();
         ApiFactory apiFactory = new ApiFactory();
         ApiService apiService = apiFactory.getApiService();
         CompositeDisposable compositeDisposable = new CompositeDisposable();
-        Disposable disposable = apiService.getWhether(51.5085300,-0.1257400)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<WeatherResponse>() {
-                    @Override
-                    public void accept(WeatherResponse weatherResponse) throws Exception {
-                        DataWeatherResponse.postValue(weatherResponse);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
+        for(final City city: citiesList)
+        {
 
-                    }
-                });
-        compositeDisposable.add(disposable);
+            Disposable disposable = apiService.getWhether(city.getLat(),city.getLon())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<WeatherResponse>() {
+                        @Override
+                        public void accept(WeatherResponse weatherResponse) throws Exception {
+                            weatherResponse.getInfo().getTzinfo().setName(city.getName());
+                            weatherResponseList.add(weatherResponse);
+                            dataWeatherResponse.setValue(weatherResponseList);
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+
+                        }
+                    });
+            compositeDisposable.add(disposable);
+        }
+
 
     }
 }

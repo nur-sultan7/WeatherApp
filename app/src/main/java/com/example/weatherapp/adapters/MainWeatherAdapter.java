@@ -52,6 +52,13 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
     public void onBindViewHolder(@NonNull MainWeatherViewHolder holder, int position) {
         WeatherResponse weatherResponse = weatherResponseList.get(position);
         holder.cityName.setText(weatherResponse.getInfo().getTzinfo().getName());
+        int temp = weatherResponse.getFact().getTemp();
+        String tempString;
+        if (temp>0)
+            tempString="+"+temp;
+        else
+            tempString= String.valueOf(temp);
+        holder.cityTemp.setText(tempString);
         String iconWeatherString= weatherResponse.getFact().getWeatherIcon();
         GlideToVectorYou
                 .init()
@@ -59,12 +66,12 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
                 .withListener(new GlideToVectorYouListener() {
                     @Override
                     public void onLoadFailed() {
-                        Toast.makeText(activity, "Load failed", Toast.LENGTH_SHORT).show();
+
                     }
 
                     @Override
                     public void onResourceReady() {
-                        Toast.makeText(activity, "Image ready", Toast.LENGTH_SHORT).show();
+
                     }
                 })
                 //.setPlaceHolder(placeholderLoading, placeholderError)
@@ -81,10 +88,12 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
     {
         ImageView cityWeatherIcon;
         TextView cityName;
+        TextView cityTemp;
          public MainWeatherViewHolder(@NonNull View itemView) {
             super(itemView);
             cityWeatherIcon=itemView.findViewById(R.id.imageViewWeatherIcon);
             cityName=itemView.findViewById(R.id.textViewCityName);
+            cityTemp=itemView.findViewById(R.id.textViewTemp);
         }
     }
 }
