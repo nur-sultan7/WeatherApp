@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.data.WeatherInfo;
 import com.example.weatherapp.pojo.WeatherResponse;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener;
@@ -23,19 +24,28 @@ import java.util.List;
 
 public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.MainWeatherViewHolder>  {
     List<WeatherResponse> weatherResponseList;
+    private static WeatherInfo weatherInfo;
     Activity activity;
     private boolean isToday;
+    private static String weatherIcon= "https://yastatic.net/weather/i/icons/blueye/color/svg/%s.svg";
+
+
+
+    public MainWeatherAdapter(Activity activity) {
+        this.weatherResponseList = new ArrayList<>();
+        this.activity=activity;
+        weatherInfo=new WeatherInfo();
+
+    }
+    public String getWeatherIcon(String icon) {
+        return String.format(weatherIcon,icon);
+    }
 
     public void setToday(boolean today) {
         isToday = today;
         notifyDataSetChanged();
     }
 
-    public MainWeatherAdapter(Activity activity) {
-        this.weatherResponseList = new ArrayList<>();
-        this.activity=activity;
-
-    }
 
     public void setWeatherResponseList(List<WeatherResponse> weatherResponseList, boolean isToday) {
         this.weatherResponseList = weatherResponseList;
@@ -57,9 +67,12 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainWeatherViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MainWeatherViewHolder holder, int position) {
         WeatherResponse weatherResponse = weatherResponseList.get(position);
         holder.cityName.setText(weatherResponse.getInfo().getTzinfo().getName());
+        String condition = isToday? weatherInfo.getConditionInRussian(weatherResponse.getFact().getCondition())
+                :weatherInfo.getConditionInRussian(weatherResponse.getForecasts().get(0).getParts().getDayShort().getCondition());
+        holder.cityCondition.setText(condition);
         int temp =isToday? weatherResponse.getFact().getTemp(): weatherResponse.getForecasts().get(0).getParts().getDayShort().getTemp();
         String tempString;
         if (temp>0)
@@ -67,23 +80,28 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
         else
             tempString= String.valueOf(temp);
         holder.cityTemp.setText(tempString);
-        String iconWeatherString= weatherResponse.getFact().getWeatherIcon();
+        String iconWeatherString=isToday? getWeatherIcon(weatherResponse.getFact().getIcon()):getWeatherIcon( weatherResponse.getForecasts().get(0).getParts().getDayShort().getIcon());
         GlideToVectorYou
                 .init()
                 .with(activity)
                 .withListener(new GlideToVectorYouListener() {
                     @Override
                     public void onLoadFailed() {
+                        Toast.makeText(activity,"image Failed", Toast.LENGTH_LONG).show();
 
                     }
 
                     @Override
                     public void onResourceReady() {
-
+                        Toast.makeText(activity,"image Ready", Toast.LENGTH_LONG).show();
+                        //notifyDataSetChanged();
+                        holder.cityWeatherIcon.invalidate();
                     }
                 })
                 //.setPlaceHolder(placeholderLoading, placeholderError)
-                .load(Uri.parse(iconWeatherString), holder.cityWeatherIcon);
+                .load(Uri.parse(iconWeatherString), holder.cityWeatherIcon)
+
+        ;
 
     }
 
@@ -97,11 +115,13 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
         ImageView cityWeatherIcon;
         TextView cityName;
         TextView cityTemp;
+        TextView cityCondition;
          public MainWeatherViewHolder(@NonNull View itemView) {
             super(itemView);
             cityWeatherIcon=itemView.findViewById(R.id.imageViewWeatherIcon);
             cityName=itemView.findViewById(R.id.textViewCityName);
             cityTemp=itemView.findViewById(R.id.textViewTemp);
+            cityCondition=itemView.findViewById(R.id.textViewCondition);
         }
     }
 }

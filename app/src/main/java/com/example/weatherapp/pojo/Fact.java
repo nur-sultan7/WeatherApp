@@ -5,11 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Fact {
 
-    private String weatherIcon= "https://yastatic.net/weather/i/icons/blueye/color/svg/%s.svg";
 
-    public String getWeatherIcon() {
-        return String.format(weatherIcon,icon);
-    }
 
     @SerializedName("temp")
     @Expose
