@@ -87,15 +87,13 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
                 .withListener(new GlideToVectorYouListener() {
                     @Override
                     public void onLoadFailed() {
-                        Toast.makeText(activity,"image Failed", Toast.LENGTH_LONG).show();
+                    
 
                     }
 
                     @Override
                     public void onResourceReady() {
-                        Toast.makeText(activity,"image Ready", Toast.LENGTH_LONG).show();
-                        //notifyDataSetChanged();
-                        holder.cityWeatherIcon.invalidate();
+
                     }
                 })
                 //.setPlaceHolder(placeholderLoading, placeholderError)

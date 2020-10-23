@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">WeatherApp</string>
-    <string name="label_tomorrow">Завтра</string>
-    <string name="label_today">Сегодня</string>
-    <string name="weather_icon">weather icon</string>
+    <string name="label_tomorrow">Tommorow</string>
+    <string name="menu_russian_cities">Russia</string>
+    <string name="menu_european_cities">Europa</string>
+    <string name="label_today">Today</string>
+    <string name="weather_icon" translatable="false">weather icon</string>
 </resources>

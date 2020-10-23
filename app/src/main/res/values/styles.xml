@@ -6,6 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionButtonStyle">@style/actionButtonStyle</item>
+    </style>
+    <style name="actionButtonStyle" parent="AppTheme">
+        <item name="android:textAllCaps">false</item>
     </style>
 
 </resources>
