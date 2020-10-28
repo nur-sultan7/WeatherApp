@@ -5,13 +5,16 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-@Database(entities = {},version = 1,exportSchema = false)
+
+import com.example.weatherapp.pojo.WeatherResponse;
+
+@Database(entities = {WeatherResponse.class},version = 1,exportSchema = false)
 public abstract class WeatherDataBase extends RoomDatabase {
     private static WeatherDataBase database;
     private static String DB_NAME="weather_db";
     private static final Object LOCK= new Object();
 
-    static WeatherDataBase getInstance(Context context)
+    public static WeatherDataBase getInstance(Context context)
     {
         synchronized (LOCK)
         {

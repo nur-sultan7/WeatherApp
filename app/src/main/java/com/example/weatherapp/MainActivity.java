@@ -18,6 +18,7 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import com.example.weatherapp.adapters.MainWeatherAdapter;
+import com.example.weatherapp.converters.Converter;
 import com.example.weatherapp.data.City;
 import com.example.weatherapp.pojo.WeatherResponse;
 
@@ -108,8 +109,10 @@ public class MainActivity extends AppCompatActivity {
         mainWeatherAdapter.setOnItemClickListener(new MainWeatherAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
+                Converter converter = new Converter();
+                String ss = converter.getInfoAsString(mainWeatherAdapter.getItem(position).getInfo());
                 Intent intent = new Intent(MainActivity.this, CityWeatherActivity.class);
-                intent.putExtra("city_index",position);
+                intent.putExtra("city_info",ss);
                 startActivity(intent);
             }
         });

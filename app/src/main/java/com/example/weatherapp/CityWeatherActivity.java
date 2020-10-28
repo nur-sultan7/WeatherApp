@@ -15,7 +15,7 @@ import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener;
 
 public class CityWeatherActivity extends AppCompatActivity {
 
-    private int cityIndex;
+    private String cityInfoString;
     private WeatherResponse cityWeather;
     private MainViewModel viewModel;
     private ImageView imageViewCity;
@@ -28,28 +28,28 @@ public class CityWeatherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_weather);
         weatherInfo=new WeatherInfo();
-        cityIndex=getIntent().getIntExtra("city_index",0);
+        cityInfoString =getIntent().getStringExtra("city_info");
         viewModel= ViewModelProviders.of(this).get(MainViewModel.class);
-        cityWeather=viewModel.getWeatherResponseList().get(cityIndex);
+        cityWeather=viewModel.getWeatherCityByInfo(cityInfoString);
         imageViewCity=findViewById(R.id.imageViewCityWeatherIcon);
         textViewCityName=findViewById(R.id.textViewCityName);
         textViewCityTemp=findViewById(R.id.textViewCityTemp);
         textViewCityWeatherCondition=findViewById(R.id.textViewCityCondition);
-        textViewCityName.setText(cityWeather.getInfo().getTzinfo().getName());
-        textViewCityTemp.setText(String.valueOf(cityWeather.getFact().getTemp()));
-        textViewCityWeatherCondition.setText(weatherInfo.getConditionInRussian(cityWeather.getFact().getCondition()));
-        GlideToVectorYou
-                .init()
-                .with(this)
-                .withListener(new GlideToVectorYouListener() {
-                    @Override
-                    public void onLoadFailed() {
-                    }
-                    @Override
-                    public void onResourceReady() {
-                    }
-                })
-                //.setPlaceHolder(placeholderLoading, placeholderError)
-                .load(Uri.parse(cityWeather.getWeatherIcon(cityWeather.getFact().getIcon())), imageViewCity);
-    }
+//        textViewCityName.setText(cityWeather.getInfo().getTzinfo().getName());
+//        textViewCityTemp.setText(String.valueOf(cityWeather.getFact().getTemp()));
+//        textViewCityWeatherCondition.setText(weatherInfo.getConditionInRussian(cityWeather.getFact().getCondition()));
+////        GlideToVectorYou
+////                .init()
+////                .with(this)
+////                .withListener(new GlideToVectorYouListener() {
+////                    @Override
+////                    public void onLoadFailed() {
+////                    }
+////                    @Override
+////                    public void onResourceReady() {
+////                    }
+////                })
+////                //.setPlaceHolder(placeholderLoading, placeholderError)
+////                .load(Uri.parse(cityWeather.getWeatherIcon(cityWeather.getFact().getIcon())), imageViewCity);
+   }
 }

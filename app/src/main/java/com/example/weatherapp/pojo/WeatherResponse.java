@@ -3,7 +3,10 @@ package com.example.weatherapp.pojo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
 
+import com.example.weatherapp.converters.Converter;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -44,13 +47,16 @@ public class WeatherResponse {
     private String nowDt;
     @SerializedName("info")
     @Expose
+    @TypeConverters(value = Converter.class)
     private Info info;
     @SerializedName("fact")
     @Expose
+    @TypeConverters(value = Converter.class)
     private Fact fact;
     @SerializedName("forecasts")
     @Expose
-    private List<Forecast> forecasts = null;
+    @TypeConverters(value = Converter.class)
+    private List<Forecast> forecasts ;
 
     public int getNow() {
         return now;
