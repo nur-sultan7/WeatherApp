@@ -5,4 +5,5 @@
     <string name="menu_european_cities">Europa</string>
     <string name="label_today">Today</string>
     <string name="weather_icon" translatable="false">weather icon</string>
+    <string name="city_label">City</string>
 </resources>

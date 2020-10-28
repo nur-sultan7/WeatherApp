@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -104,7 +105,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        mainWeatherAdapter.setOnItemClickListener(new MainWeatherAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                Intent intent = new Intent(MainActivity.this, CityWeatherActivity.class);
+                intent.putExtra("city_index",position);
+                startActivity(intent);
+            }
+        });
         loadData(isRussianCities);
+
     }
     public  void loadData(boolean isRussianCities)
     {

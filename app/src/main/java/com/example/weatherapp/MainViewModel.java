@@ -25,6 +25,10 @@ public class MainViewModel extends AndroidViewModel {
     private MutableLiveData<List<WeatherResponse>> dataWeatherResponse;
     private List<WeatherResponse> weatherResponseList;
 
+    public List<WeatherResponse> getWeatherResponseList() {
+        return weatherResponseList;
+    }
+
     public MainViewModel(@NonNull Application application) {
         super(application);
         dataWeatherResponse =new MutableLiveData<>();

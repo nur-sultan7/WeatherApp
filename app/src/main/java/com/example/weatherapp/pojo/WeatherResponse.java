@@ -1,12 +1,41 @@
 package com.example.weatherapp.pojo;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
+@Entity(tableName = "cities_weather")
 public class WeatherResponse {
+    public WeatherResponse(int uniqueId, int now, String nowDt, Info info, Fact fact, List<Forecast> forecasts) {
+        this.uniqueId = uniqueId;
+        this.now = now;
+        this.nowDt = nowDt;
+        this.info = info;
+        this.fact = fact;
+        this.forecasts = forecasts;
+    }
 
+    @PrimaryKey(autoGenerate = true)
+    private int uniqueId;
+
+    public int getUniqueId() {
+        return uniqueId;
+    }
+
+    public void setUniqueId(int uniqueId) {
+        this.uniqueId = uniqueId;
+    }
+
+
+    @Ignore
+    private static String weatherIcon= "https://yastatic.net/weather/i/icons/blueye/color/svg/%s.svg";
+    public String getWeatherIcon(String icon) {
+        return String.format(weatherIcon,icon);
+    }
     @SerializedName("now")
     @Expose
     private int now;

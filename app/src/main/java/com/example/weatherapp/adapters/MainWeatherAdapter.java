@@ -27,9 +27,17 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
     private static WeatherInfo weatherInfo;
     Activity activity;
     private boolean isToday;
-    private static String weatherIcon= "https://yastatic.net/weather/i/icons/blueye/color/svg/%s.svg";
 
 
+    private static OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        MainWeatherAdapter.onItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener{
+        void onClick(int position);
+    }
 
     public MainWeatherAdapter(Activity activity) {
         this.weatherResponseList = new ArrayList<>();
@@ -37,13 +45,15 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
         weatherInfo=new WeatherInfo();
 
     }
-    public String getWeatherIcon(String icon) {
-        return String.format(weatherIcon,icon);
-    }
+
 
     public void setToday(boolean today) {
         isToday = today;
         notifyDataSetChanged();
+    }
+    public WeatherResponse getItem(int position)
+    {
+        return weatherResponseList.get(position);
     }
 
 
@@ -80,7 +90,7 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
         else
             tempString= String.valueOf(temp);
         holder.cityTemp.setText(tempString);
-        String iconWeatherString=isToday? getWeatherIcon(weatherResponse.getFact().getIcon()):getWeatherIcon( weatherResponse.getForecasts().get(0).getParts().getDayShort().getIcon());
+        String iconWeatherString=isToday? weatherResponse.getWeatherIcon(weatherResponse.getFact().getIcon()):weatherResponse.getWeatherIcon( weatherResponse.getForecasts().get(0).getParts().getDayShort().getIcon());
         GlideToVectorYou
                 .init()
                 .with(activity)
@@ -97,9 +107,7 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
                     }
                 })
                 //.setPlaceHolder(placeholderLoading, placeholderError)
-                .load(Uri.parse(iconWeatherString), holder.cityWeatherIcon)
-
-        ;
+                .load(Uri.parse(iconWeatherString), holder.cityWeatherIcon);
 
     }
 
@@ -114,12 +122,19 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
         TextView cityName;
         TextView cityTemp;
         TextView cityCondition;
-         public MainWeatherViewHolder(@NonNull View itemView) {
+         MainWeatherViewHolder(@NonNull View itemView) {
             super(itemView);
             cityWeatherIcon=itemView.findViewById(R.id.imageViewWeatherIcon);
             cityName=itemView.findViewById(R.id.textViewCityName);
             cityTemp=itemView.findViewById(R.id.textViewTemp);
             cityCondition=itemView.findViewById(R.id.textViewCondition);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onItemClickListener!=null)
+                        onItemClickListener.onClick(getAdapterPosition());
+                }
+            });
         }
     }
 }
