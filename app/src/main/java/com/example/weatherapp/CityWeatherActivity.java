@@ -35,21 +35,21 @@ public class CityWeatherActivity extends AppCompatActivity {
         textViewCityName=findViewById(R.id.textViewCityName);
         textViewCityTemp=findViewById(R.id.textViewCityTemp);
         textViewCityWeatherCondition=findViewById(R.id.textViewCityCondition);
-//        textViewCityName.setText(cityWeather.getInfo().getTzinfo().getName());
-//        textViewCityTemp.setText(String.valueOf(cityWeather.getFact().getTemp()));
-//        textViewCityWeatherCondition.setText(weatherInfo.getConditionInRussian(cityWeather.getFact().getCondition()));
-////        GlideToVectorYou
-////                .init()
-////                .with(this)
-////                .withListener(new GlideToVectorYouListener() {
-////                    @Override
-////                    public void onLoadFailed() {
-////                    }
-////                    @Override
-////                    public void onResourceReady() {
-////                    }
-////                })
-////                //.setPlaceHolder(placeholderLoading, placeholderError)
-////                .load(Uri.parse(cityWeather.getWeatherIcon(cityWeather.getFact().getIcon())), imageViewCity);
+        textViewCityName.setText(cityWeather.getInfo().getTzinfo().getName());
+        textViewCityTemp.setText(String.valueOf(cityWeather.getFact().getTemp()));
+        textViewCityWeatherCondition.setText(weatherInfo.getConditionInRussian(cityWeather.getFact().getCondition()));
+        GlideToVectorYou
+                .init()
+                .with(this)
+                .withListener(new GlideToVectorYouListener() {
+                    @Override
+                    public void onLoadFailed() {
+                    }
+                    @Override
+                    public void onResourceReady() {
+                    }
+                })
+                //.setPlaceHolder(placeholderLoading, placeholderError)
+                .load(Uri.parse(cityWeather.getWeatherIcon(cityWeather.getFact().getIcon())), imageViewCity);
    }
 }

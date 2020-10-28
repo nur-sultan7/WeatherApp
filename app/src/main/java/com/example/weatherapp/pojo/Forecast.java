@@ -16,9 +16,9 @@ public class Forecast {
     @SerializedName("week")
     @Expose
     private int week;
-//    @SerializedName("sunrise")
-//    @Expose
-//    private String sunrise;
+    @SerializedName("sunrise")
+    @Expose
+    private String sunrise;
     @SerializedName("sunset")
     @Expose
     private String sunset;
@@ -59,13 +59,13 @@ public class Forecast {
         this.week = week;
     }
 
-//    public String getSunrise() {
-//        return sunrise;
-//    }
-//
-//    public void setSunrise(String sunrise) {
-//        this.sunrise = sunrise;
-//    }
+    public String getSunrise() {
+        return sunrise;
+    }
+
+    public void setSunrise(String sunrise) {
+        this.sunrise = sunrise;
+    }
 
     public String getSunset() {
         return sunset;
