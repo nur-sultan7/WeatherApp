@@ -13,6 +13,8 @@ import com.example.weatherapp.pojo.WeatherResponse;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener;
 
+import java.util.List;
+
 public class CityWeatherActivity extends AppCompatActivity {
 
     private String cityInfoString;
@@ -31,6 +33,7 @@ public class CityWeatherActivity extends AppCompatActivity {
         cityInfoString =getIntent().getStringExtra("city_info");
         viewModel= ViewModelProviders.of(this).get(MainViewModel.class);
         cityWeather=viewModel.getWeatherCityByInfo(cityInfoString);
+
         imageViewCity=findViewById(R.id.imageViewCityWeatherIcon);
         textViewCityName=findViewById(R.id.textViewCityName);
         textViewCityTemp=findViewById(R.id.textViewCityTemp);

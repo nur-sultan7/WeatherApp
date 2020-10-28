@@ -94,7 +94,7 @@ public class MainViewModel extends AndroidViewModel {
     public List<WeatherResponse> getWeatherList()
     {
         try {
-            return new GetWeatherListTask().get();
+            return new GetWeatherListTask().execute().get();
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
