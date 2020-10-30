@@ -1,9 +1,6 @@
 package com.example.weatherapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuBuilder;
-import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -12,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import com.example.weatherapp.adapters.MainWeatherAdapter;
+import com.example.weatherapp.city_info.CityWeatherActivity;
 import com.example.weatherapp.converters.Converter;
 import com.example.weatherapp.data.City;
 import com.example.weatherapp.pojo.WeatherResponse;

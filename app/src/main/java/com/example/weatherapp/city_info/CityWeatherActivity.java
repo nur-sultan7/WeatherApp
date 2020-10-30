@@ -1,18 +1,24 @@
-package com.example.weatherapp;
+package com.example.weatherapp.city_info;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.weatherapp.MainViewModel;
+import com.example.weatherapp.R;
+import com.example.weatherapp.city_info.fragmets.TodayWeatherInfoFragment;
 import com.example.weatherapp.data.WeatherInfo;
 import com.example.weatherapp.pojo.WeatherResponse;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CityWeatherActivity extends AppCompatActivity {
@@ -25,6 +31,9 @@ public class CityWeatherActivity extends AppCompatActivity {
     private TextView textViewCityWeatherCondition;
     private TextView textViewCityTemp;
     private WeatherInfo weatherInfo;
+    private ViewPager2 viewPager2;
+    private CityWeatherInfoViewPagerAdapter viewPagerAdapter;
+    private List<Fragment> fragmentList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,5 +63,11 @@ public class CityWeatherActivity extends AppCompatActivity {
                 })
                 //.setPlaceHolder(placeholderLoading, placeholderError)
                 .load(Uri.parse(cityWeather.getWeatherIcon(cityWeather.getFact().getIcon())), imageViewCity);
+        viewPager2=findViewById(R.id.viewPagerCityWeatherInfo);
+        fragmentList=new ArrayList<>();
+        fragmentList.add(TodayWeatherInfoFragment.newInstance(cityInfoString));
+
+        viewPagerAdapter=new CityWeatherInfoViewPagerAdapter(getSupportFragmentManager(),getLifecycle(),fragmentList);
+        viewPager2.setAdapter(viewPagerAdapter);
    }
 }
