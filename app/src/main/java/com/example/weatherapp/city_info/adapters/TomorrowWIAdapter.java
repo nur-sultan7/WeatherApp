@@ -17,15 +17,14 @@ import com.example.weatherapp.data.WeatherInfo;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class TodayWIAdapter extends RecyclerView.Adapter<TodayWIAdapter.TodayWIHolder>  {
+public class TomorrowWIAdapter extends RecyclerView.Adapter<TomorrowWIAdapter.TodayWIHolder>  {
     private List<Today> todayList ;
     private Context context;
     private WeatherInfo weatherInfo;
 
-    public TodayWIAdapter(Context context, List<Today> todayList) {
+    public TomorrowWIAdapter(Context context, List<Today> todayList) {
         this.todayList = todayList;
         this.context=context;
         weatherInfo=new WeatherInfo();

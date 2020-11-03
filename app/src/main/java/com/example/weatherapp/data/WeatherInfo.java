@@ -1,12 +1,11 @@
 package com.example.weatherapp.data;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 public class WeatherInfo {
     private Map<String,String> conditionListInRussian = new HashMap<>();
+    private Map<String,String> windInfoListInRussian = new HashMap<>();
     public WeatherInfo()
     {
         conditionListInRussian.put("clear"," ясно");
@@ -28,9 +27,23 @@ public class WeatherInfo {
         conditionListInRussian.put("thunderstorm","гроза");
         conditionListInRussian.put("thunderstorm-with-rain","дождь с грозой");
         conditionListInRussian.put("thunderstorm-with-hail"," гроза с градом");
+
+        windInfoListInRussian.put("nw","северо-западное");
+        windInfoListInRussian.put("n","северное");
+        windInfoListInRussian.put("ne","северо-восточное");
+        windInfoListInRussian.put("e","восточное");
+        windInfoListInRussian.put("se","юго-восточное");
+        windInfoListInRussian.put("s","южное");
+        windInfoListInRussian.put("sw","юго-западное");
+        windInfoListInRussian.put("w","западное");
+        windInfoListInRussian.put("с","штиль");
     }
     public  String getConditionInRussian(String condition)
     {
         return conditionListInRussian.get(condition);
+    }
+
+    public String getWindInfoListInRussian(String windInfo) {
+        return windInfoListInRussian.get(windInfo);
     }
 }

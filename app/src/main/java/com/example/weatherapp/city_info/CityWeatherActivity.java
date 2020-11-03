@@ -1,5 +1,6 @@
 package com.example.weatherapp.city_info;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -17,6 +18,8 @@ import com.example.weatherapp.data.WeatherInfo;
 import com.example.weatherapp.pojo.WeatherResponse;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,7 @@ public class CityWeatherActivity extends AppCompatActivity {
     private ViewPager2 viewPager2;
     private CityWeatherInfoViewPagerAdapter viewPagerAdapter;
     private List<Fragment> fragmentList;
+    private TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,10 +68,27 @@ public class CityWeatherActivity extends AppCompatActivity {
                 //.setPlaceHolder(placeholderLoading, placeholderError)
                 .load(Uri.parse(cityWeather.getWeatherIcon(cityWeather.getFact().getIcon())), imageViewCity);
         viewPager2=findViewById(R.id.viewPagerCityWeatherInfo);
+        tabLayout=findViewById(R.id.tabLayoutCityWeatherInfo);
+
         fragmentList=new ArrayList<>();
         fragmentList.add(TodayWeatherInfoFragment.newInstance(cityInfoString));
-
+        fragmentList.add(TodayWeatherInfoFragment.newInstance(cityInfoString));
         viewPagerAdapter=new CityWeatherInfoViewPagerAdapter(getSupportFragmentManager(),getLifecycle(),fragmentList);
         viewPager2.setAdapter(viewPagerAdapter);
+        new TabLayoutMediator(tabLayout, viewPager2, true, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                switch (position)
+                {
+                    case 0:
+                        tab.setText("Сегодня");
+                        break;
+                    case 1:
+                        tab.setText("Завтра");
+                        break;
+                }
+
+            }
+        }).attach();
    }
 }

@@ -8,5 +8,9 @@
     <string name="city_label">City</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="TWIWindSpeedTitle">Wind Speed</string>
+    <string name="TWIConditionTitle" translatable="false">Condition</string>
+
+    <string name="twi_wind_dir_title">Direction</string>
 </resources>

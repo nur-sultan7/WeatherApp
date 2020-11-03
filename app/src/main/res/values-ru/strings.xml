@@ -5,4 +5,7 @@
     <string name="label_today">Сегодня</string>
     <string name="menu_russian_cities">Россия</string>
     <string name="menu_european_cities">Европа</string>
+    <string name="city_label">Город</string>
+    <string name="TWIWindSpeedTitle">Скорость ветра</string>
+    <string name="twi_wind_dir_title">Направление</string>
 </resources>
