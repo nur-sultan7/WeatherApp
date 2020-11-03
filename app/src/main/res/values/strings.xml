@@ -13,4 +13,5 @@
     <string name="TWIConditionTitle" translatable="false">Condition</string>
 
     <string name="twi_wind_dir_title">Direction</string>
+    <string name="label_time">Time</string>
 </resources>

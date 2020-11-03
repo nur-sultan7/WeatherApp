@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.city_info.data.Today;
+import com.example.weatherapp.city_info.data.Tomorrow;
 import com.example.weatherapp.data.WeatherInfo;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener;
@@ -20,12 +21,12 @@ import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener;
 import java.util.List;
 
 public class TomorrowWIAdapter extends RecyclerView.Adapter<TomorrowWIAdapter.TodayWIHolder>  {
-    private List<Today> todayList ;
+    private List<Tomorrow> tomorrowList;
     private Context context;
     private WeatherInfo weatherInfo;
 
-    public TomorrowWIAdapter(Context context, List<Today> todayList) {
-        this.todayList = todayList;
+    public TomorrowWIAdapter(Context context, List<Tomorrow> tomorrowList) {
+        this.tomorrowList = tomorrowList;
         this.context=context;
         weatherInfo=new WeatherInfo();
     }
@@ -33,13 +34,13 @@ public class TomorrowWIAdapter extends RecyclerView.Adapter<TomorrowWIAdapter.To
     @NonNull
     @Override
     public TodayWIHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_today_wi,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_tomorrow_wi,parent,false);
         return new TodayWIHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TodayWIHolder holder, int position) {
-        Today today = todayList.get(position);
+        Tomorrow today = tomorrowList.get(position);
         holder.textViewTWIName.setText(today.getName());
         holder.textViewTWICondition.setText(weatherInfo.getConditionInRussian(today.getPartOfDay().getCondition()));
         String temp;
@@ -56,13 +57,9 @@ public class TomorrowWIAdapter extends RecyclerView.Adapter<TomorrowWIAdapter.To
                 .withListener(new GlideToVectorYouListener() {
                     @Override
                     public void onLoadFailed() {
-
-
                     }
-
                     @Override
                     public void onResourceReady() {
-
                     }
                 })
                 //.setPlaceHolder(placeholderLoading, placeholderError)
@@ -71,7 +68,7 @@ public class TomorrowWIAdapter extends RecyclerView.Adapter<TomorrowWIAdapter.To
 
     @Override
     public int getItemCount() {
-        return todayList.size();
+        return tomorrowList.size();
     }
 
     class TodayWIHolder extends RecyclerView.ViewHolder

@@ -15,8 +15,6 @@ import com.example.weatherapp.MainViewModel;
 import com.example.weatherapp.R;
 import com.example.weatherapp.city_info.adapters.TodayWIAdapter;
 import com.example.weatherapp.city_info.data.Today;
-import com.example.weatherapp.pojo.PartOfDay;
-import com.example.weatherapp.pojo.Parts;
 import com.example.weatherapp.pojo.WeatherResponse;
 
 import java.util.ArrayList;
@@ -33,7 +31,7 @@ public class TodayWeatherInfoFragment extends Fragment {
     private RecyclerView recyclerView;
     private MainViewModel viewModel;
     private WeatherResponse weatherResponse;
-    private Parts partsOfDay;
+    private Today today;
     private List<Today> todayList;
     private TodayWIAdapter todayWIAdapter;
 
@@ -60,13 +58,10 @@ public class TodayWeatherInfoFragment extends Fragment {
         }
         viewModel= ViewModelProviders.of(this).get(MainViewModel.class);
         weatherResponse=viewModel.getWeatherCityByInfo(mParam1);
-        partsOfDay = weatherResponse.getForecasts().get(0).getParts();
+        today=new Today();
+        today.setHourList(weatherResponse.getForecasts().get(0).getHours());
         todayList=new ArrayList<>();
-        todayList.add( new Today(partsOfDay.getMorning(),"Утро"));
-        todayList.add(new Today(partsOfDay.getDay(),"День"));
-        todayList.add(new Today(partsOfDay.getEvening(),"Вечер"));
-        todayList.add(new Today(partsOfDay.getNight(),"Ночь"));
-        todayWIAdapter=new TodayWIAdapter(getContext(),todayList);
+        todayWIAdapter=new TodayWIAdapter(getContext(),today);
     }
 
     @Override

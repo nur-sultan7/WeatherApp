@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.weatherapp.MainViewModel;
 import com.example.weatherapp.R;
 import com.example.weatherapp.city_info.fragmets.TodayWeatherInfoFragment;
+import com.example.weatherapp.city_info.fragmets.TomorrowWeatherInfoFragment;
 import com.example.weatherapp.data.WeatherInfo;
 import com.example.weatherapp.pojo.WeatherResponse;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
@@ -72,7 +73,7 @@ public class CityWeatherActivity extends AppCompatActivity {
 
         fragmentList=new ArrayList<>();
         fragmentList.add(TodayWeatherInfoFragment.newInstance(cityInfoString));
-        fragmentList.add(TodayWeatherInfoFragment.newInstance(cityInfoString));
+        fragmentList.add(TomorrowWeatherInfoFragment.newInstance(cityInfoString));
         viewPagerAdapter=new CityWeatherInfoViewPagerAdapter(getSupportFragmentManager(),getLifecycle(),fragmentList);
         viewPager2.setAdapter(viewPagerAdapter);
         new TabLayoutMediator(tabLayout, viewPager2, true, new TabLayoutMediator.TabConfigurationStrategy() {

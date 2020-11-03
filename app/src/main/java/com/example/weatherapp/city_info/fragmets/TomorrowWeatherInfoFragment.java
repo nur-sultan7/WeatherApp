@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.MainViewModel;
 import com.example.weatherapp.R;
-import com.example.weatherapp.city_info.adapters.TodayWIAdapter;
 import com.example.weatherapp.city_info.adapters.TomorrowWIAdapter;
 import com.example.weatherapp.city_info.data.Today;
+import com.example.weatherapp.city_info.data.Tomorrow;
 import com.example.weatherapp.pojo.Parts;
 import com.example.weatherapp.pojo.WeatherResponse;
 
@@ -33,7 +33,7 @@ public class TomorrowWeatherInfoFragment extends Fragment {
     private MainViewModel viewModel;
     private WeatherResponse weatherResponse;
     private Parts partsOfDay;
-    private List<Today> todayList;
+    private List<Tomorrow> tomorrowList;
     private TomorrowWIAdapter tomorrowWIAdapter;
 
     public TomorrowWeatherInfoFragment() {
@@ -59,13 +59,13 @@ public class TomorrowWeatherInfoFragment extends Fragment {
         }
         viewModel= ViewModelProviders.of(this).get(MainViewModel.class);
         weatherResponse=viewModel.getWeatherCityByInfo(mParam1);
-        partsOfDay = weatherResponse.getForecasts().get(0).getParts();
-        todayList=new ArrayList<>();
-        todayList.add( new Today(partsOfDay.getMorning(),"Утро"));
-        todayList.add(new Today(partsOfDay.getDay(),"День"));
-        todayList.add(new Today(partsOfDay.getEvening(),"Вечер"));
-        todayList.add(new Today(partsOfDay.getNight(),"Ночь"));
-        tomorrowWIAdapter =new TomorrowWIAdapter(getContext(),todayList);
+        partsOfDay = weatherResponse.getForecasts().get(1).getParts();
+        tomorrowList =new ArrayList<>();
+        tomorrowList.add( new Tomorrow(partsOfDay.getMorning(),"Утро"));
+        tomorrowList.add(new Tomorrow(partsOfDay.getDay(),"День"));
+        tomorrowList.add(new Tomorrow(partsOfDay.getEvening(),"Вечер"));
+        tomorrowList.add(new Tomorrow(partsOfDay.getNight(),"Ночь"));
+        tomorrowWIAdapter =new TomorrowWIAdapter(getContext(), tomorrowList);
     }
 
     @Override

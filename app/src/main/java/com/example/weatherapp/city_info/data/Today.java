@@ -1,34 +1,30 @@
 package com.example.weatherapp.city_info.data;
 
-import com.example.weatherapp.pojo.PartOfDay;
+import android.annotation.SuppressLint;
+
+import com.example.weatherapp.pojo.Hour;
+
+
+import java.util.List;
+
 
 public class Today {
-private PartOfDay partOfDay;
-private String name;
-private String weatherIcon= "https://yastatic.net/weather/i/icons/blueye/color/svg/%s.svg";
+private List<Hour> hoursList;
+private String time;
 
-    public Today(PartOfDay partOfDay, String name) {
-        this.partOfDay = partOfDay;
-        this.name = name;
+
+
+    public String getTime(int position) {
+        return String.format("%02d:00",position);
     }
 
-    public PartOfDay getPartOfDay() {
-        return partOfDay;
+    public List<Hour> getHoursList() {
+        return hoursList;
     }
 
-    public void setPartOfDay(PartOfDay partOfDay) {
-        this.partOfDay = partOfDay;
+    public void setHourList(List<Hour> hourList) {
+        this.hoursList = hourList;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public  String getWeatherIcon() {
-        return String.format(weatherIcon, partOfDay.getIcon());
-    }
 }

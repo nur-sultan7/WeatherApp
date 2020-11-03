@@ -54,7 +54,7 @@
             android:id="@+id/textViewTWIName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/label_today"
+            android:text="@string/label_time"
             android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold"

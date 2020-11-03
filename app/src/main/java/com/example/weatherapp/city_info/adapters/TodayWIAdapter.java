@@ -14,21 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.weatherapp.R;
 import com.example.weatherapp.city_info.data.Today;
 import com.example.weatherapp.data.WeatherInfo;
+import com.example.weatherapp.pojo.Hour;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TodayWIAdapter extends RecyclerView.Adapter<TodayWIAdapter.TodayWIHolder>  {
-    private List<Today> todayList ;
+    private Today today;
     private Context context;
-    private WeatherInfo weatherInfo;
 
-    public TodayWIAdapter(Context context, List<Today> todayList) {
-        this.todayList = todayList;
+    public TodayWIAdapter(Context context, Today today) {
+        this.today = today;
         this.context=context;
-        weatherInfo=new WeatherInfo();
     }
 
     @NonNull
@@ -40,17 +38,17 @@ public class TodayWIAdapter extends RecyclerView.Adapter<TodayWIAdapter.TodayWIH
 
     @Override
     public void onBindViewHolder(@NonNull TodayWIHolder holder, int position) {
-        Today today = todayList.get(position);
-        holder.textViewTWIName.setText(today.getName());
-        holder.textViewTWICondition.setText(weatherInfo.getConditionInRussian(today.getPartOfDay().getCondition()));
+        Hour hour = today.getHoursList().get(position);
+        holder.textViewTWIName.setText(today.getTime(position));
+        holder.textViewTWICondition.setText(WeatherInfo.getConditionInRussian(hour.getCondition()));
         String temp;
-        if (today.getPartOfDay().getTempAvg()>0)
+        if (hour.getTemp()>0)
             temp="+%s";
         else
             temp="%s";
-        holder.textViewTWITemp.setText(String.format(temp,today.getPartOfDay().getTempAvg()));
-        holder.textViewTWIWindSpeed.setText(String.format("%s м/с",today.getPartOfDay().getWindSpeed()));
-        holder.textViewTWIDir.setText(weatherInfo.getWindInfoListInRussian(today.getPartOfDay().getWindDir()));
+        holder.textViewTWITemp.setText(String.format(temp,hour.getTemp()));
+        holder.textViewTWIWindSpeed.setText(String.format("%s м/с",hour.getWindSpeed()));
+        holder.textViewTWIDir.setText(WeatherInfo.getWindInfoListInRussian(hour.getWindDir()));
         GlideToVectorYou
                 .init()
                 .with(context)
@@ -67,12 +65,12 @@ public class TodayWIAdapter extends RecyclerView.Adapter<TodayWIAdapter.TodayWIH
                     }
                 })
                 //.setPlaceHolder(placeholderLoading, placeholderError)
-                .load(Uri.parse(today.getWeatherIcon()), holder.imageViewTWIIcon);
+                .load(Uri.parse(WeatherInfo.getWeatherIcon(hour.getIcon())), holder.imageViewTWIIcon);
     }
 
     @Override
     public int getItemCount() {
-        return todayList.size();
+        return today.getHoursList().size();
     }
 
     class TodayWIHolder extends RecyclerView.ViewHolder
