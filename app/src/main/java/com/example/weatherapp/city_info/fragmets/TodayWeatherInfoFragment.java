@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.weatherapp.MainViewModel;
 import com.example.weatherapp.R;
 import com.example.weatherapp.city_info.adapters.TodayWIAdapter;
 import com.example.weatherapp.city_info.data.Today;
+import com.example.weatherapp.pojo.Hour;
 import com.example.weatherapp.pojo.WeatherResponse;
 
 import java.util.ArrayList;
@@ -59,7 +61,17 @@ public class TodayWeatherInfoFragment extends Fragment {
         viewModel= ViewModelProviders.of(this).get(MainViewModel.class);
         weatherResponse=viewModel.getWeatherCityByInfo(mParam1);
         today=new Today();
-        today.setHourList(weatherResponse.getForecasts().get(0).getHours());
+        Time currentTime = new Time(Time.getCurrentTimezone());
+        currentTime.setToNow();
+        int currentHour= currentTime.hour;
+        List<Hour> hourList = weatherResponse.getForecasts().get(0).getHours();
+        List<Hour> hourListForAdd=new ArrayList<>();
+        for (Hour hour: hourList)
+        {
+            if (currentHour<=Integer.parseInt(hour.getHour()))
+                hourListForAdd.add(hour);
+        }
+        today.setHourList(hourListForAdd);
         todayList=new ArrayList<>();
         todayWIAdapter=new TodayWIAdapter(getContext(),today);
     }

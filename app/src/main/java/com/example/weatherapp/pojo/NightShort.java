@@ -40,7 +40,7 @@ public class NightShort {
     private int precType;
     @SerializedName("prec_strength")
     @Expose
-    private int precStrength;
+    private double precStrength;
     @SerializedName("cloudness")
     @Expose
     private double cloudness;
@@ -133,11 +133,11 @@ public class NightShort {
         this.precType = precType;
     }
 
-    public int getPrecStrength() {
+    public double getPrecStrength() {
         return precStrength;
     }
 
-    public void setPrecStrength(int precStrength) {
+    public void setPrecStrength(double precStrength) {
         this.precStrength = precStrength;
     }
 

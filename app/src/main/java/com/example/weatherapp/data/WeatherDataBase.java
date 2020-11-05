@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.weatherapp.pojo.WeatherResponse;
 
-@Database(entities = {WeatherResponse.class},version = 3,exportSchema = false)
+@Database(entities = {WeatherResponse.class},version = 4,exportSchema = false)
 public abstract class WeatherDataBase extends RoomDatabase {
     private static WeatherDataBase database;
     private static String DB_NAME="weather_db";

@@ -57,7 +57,7 @@ public class Fact {
     private boolean isThunder;
     @SerializedName("cloudness")
     @Expose
-    private int cloudness;
+    private double cloudness;
     @SerializedName("obs_time")
     @Expose
     private int obsTime;
@@ -196,11 +196,11 @@ public class Fact {
         this.isThunder = isThunder;
     }
 
-    public int getCloudness() {
+    public double getCloudness() {
         return cloudness;
     }
 
-    public void setCloudness(int cloudness) {
+    public void setCloudness(double cloudness) {
         this.cloudness = cloudness;
     }
 

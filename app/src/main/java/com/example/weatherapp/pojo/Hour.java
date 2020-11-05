@@ -58,7 +58,7 @@ public class Hour {
     private boolean isThunder;
     @SerializedName("cloudness")
     @Expose
-    private int cloudness;
+    private double cloudness;
 
     public String getHour() {
         return hour;
@@ -196,11 +196,11 @@ public class Hour {
         this.isThunder = isThunder;
     }
 
-    public int getCloudness() {
+    public double getCloudness() {
         return cloudness;
     }
 
-    public void setCloudness(int cloudness) {
+    public void setCloudness(double cloudness) {
         this.cloudness = cloudness;
     }
 

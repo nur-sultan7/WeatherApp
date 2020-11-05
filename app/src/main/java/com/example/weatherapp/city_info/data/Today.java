@@ -15,7 +15,7 @@ private String time;
 
 
     public String getTime(int position) {
-        return String.format("%02d:00",position);
+        return String.format("%2s:00",hoursList.get(position).getHour());
     }
 
     public List<Hour> getHoursList() {

@@ -14,4 +14,7 @@
 
     <string name="twi_wind_dir_title">Direction</string>
     <string name="label_time">Time</string>
+    <string name="city_wind_speed">Скорость ветра (в м/с)</string>
+    <string name="city_wind_direction">Направление ветра</string>
+    <string name="city_humidity">Влажность:</string>
 </resources>

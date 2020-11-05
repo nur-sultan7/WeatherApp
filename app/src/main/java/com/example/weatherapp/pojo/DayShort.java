@@ -46,7 +46,7 @@ public class DayShort {
     private double precStrength;
     @SerializedName("cloudness")
     @Expose
-    private int cloudness;
+    private double cloudness;
 
     public int getTemp() {
         return temp;
@@ -152,11 +152,11 @@ public class DayShort {
         this.precStrength = precStrength;
     }
 
-    public int getCloudness() {
+    public double getCloudness() {
         return cloudness;
     }
 
-    public void setCloudness(int cloudness) {
+    public void setCloudness(double cloudness) {
         this.cloudness = cloudness;
     }
 

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -34,27 +35,34 @@ public class CityWeatherActivity extends AppCompatActivity {
     private TextView textViewCityName;
     private TextView textViewCityWeatherCondition;
     private TextView textViewCityTemp;
-    private WeatherInfo weatherInfo;
     private ViewPager2 viewPager2;
     private CityWeatherInfoViewPagerAdapter viewPagerAdapter;
     private List<Fragment> fragmentList;
     private TabLayout tabLayout;
+    private TextView textViewHumidity;
+    private TextView textViewWindSpeed;
+    private TextView textViewWindDirection;
+    @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_weather);
-        weatherInfo=new WeatherInfo();
         cityInfoString =getIntent().getStringExtra("city_info");
         viewModel= ViewModelProviders.of(this).get(MainViewModel.class);
         cityWeather=viewModel.getWeatherCityByInfo(cityInfoString);
-
+        textViewHumidity=findViewById(R.id.textViewCityHumidity);
+        textViewWindSpeed=findViewById(R.id.textViewCityWindSpeed);
+        textViewWindDirection=findViewById(R.id.textViewCityWindDirection);
         imageViewCity=findViewById(R.id.imageViewCityWeatherIcon);
         textViewCityName=findViewById(R.id.textViewCityName);
         textViewCityTemp=findViewById(R.id.textViewCityTemp);
         textViewCityWeatherCondition=findViewById(R.id.textViewCityCondition);
         textViewCityName.setText(cityWeather.getInfo().getTzinfo().getName());
-        textViewCityTemp.setText(String.valueOf(cityWeather.getFact().getTemp()));
-        textViewCityWeatherCondition.setText(weatherInfo.getConditionInRussian(cityWeather.getFact().getCondition()));
+        textViewCityTemp.setText(String.format("%+d",cityWeather.getFact().getTemp()));
+        textViewCityWeatherCondition.setText(WeatherInfo.getConditionInRussian(cityWeather.getFact().getCondition()));
+        textViewWindDirection.setText(WeatherInfo.getWindInfoListInRussian(cityWeather.getFact().getWindDir()));
+        textViewWindSpeed.setText(String.valueOf(cityWeather.getFact().getWindSpeed()));
+        textViewHumidity.append(String.format(" %d%%",cityWeather.getFact().getHumidity()));
         GlideToVectorYou
                 .init()
                 .with(this)
