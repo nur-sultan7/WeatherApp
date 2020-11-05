@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.weatherapp.MainViewModel;
 import com.example.weatherapp.R;
+import com.example.weatherapp.city_info.fragmets.ThreeDaysWIFragment;
 import com.example.weatherapp.city_info.fragmets.TodayWeatherInfoFragment;
 import com.example.weatherapp.city_info.fragmets.TomorrowWeatherInfoFragment;
 import com.example.weatherapp.data.WeatherInfo;
@@ -63,6 +64,7 @@ public class CityWeatherActivity extends AppCompatActivity {
         textViewWindDirection.setText(WeatherInfo.getWindInfoListInRussian(cityWeather.getFact().getWindDir()));
         textViewWindSpeed.setText(String.valueOf(cityWeather.getFact().getWindSpeed()));
         textViewHumidity.append(String.format(" %d%%",cityWeather.getFact().getHumidity()));
+
         GlideToVectorYou
                 .init()
                 .with(this)
@@ -82,6 +84,7 @@ public class CityWeatherActivity extends AppCompatActivity {
         fragmentList=new ArrayList<>();
         fragmentList.add(TodayWeatherInfoFragment.newInstance(cityInfoString));
         fragmentList.add(TomorrowWeatherInfoFragment.newInstance(cityInfoString));
+        fragmentList.add(ThreeDaysWIFragment.newInstance(cityInfoString));
         viewPagerAdapter=new CityWeatherInfoViewPagerAdapter(getSupportFragmentManager(),getLifecycle(),fragmentList);
         viewPager2.setAdapter(viewPagerAdapter);
         new TabLayoutMediator(tabLayout, viewPager2, true, new TabLayoutMediator.TabConfigurationStrategy() {
@@ -94,6 +97,9 @@ public class CityWeatherActivity extends AppCompatActivity {
                         break;
                     case 1:
                         tab.setText("Завтра");
+                        break;
+                    case 2:
+                        tab.setText("На три дня");
                         break;
                 }
 
