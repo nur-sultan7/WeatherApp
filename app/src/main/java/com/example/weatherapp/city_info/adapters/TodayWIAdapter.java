@@ -46,7 +46,7 @@ public class TodayWIAdapter extends RecyclerView.Adapter<TodayWIAdapter.TodayWIH
             temp="%s";
         holder.textViewTWITemp.setText(String.format(temp,hour.getTemp()));
         holder.textViewTWIWindSpeed.setText(String.format("%s м/с",hour.getWindSpeed()));
-        holder.textViewTWIDir.setText(WeatherInfo.getWindInfoListInRussian(hour.getWindDir()));
+        holder.textViewTWIHumidity.setText(String.format("%s %%",hour.getHumidity()));
         GlideToVectorYou
                 .init()
                 .with(context)
@@ -78,7 +78,7 @@ public class TodayWIAdapter extends RecyclerView.Adapter<TodayWIAdapter.TodayWIH
         TextView textViewTWICondition;
         TextView textViewTWITemp;
         TextView textViewTWIWindSpeed;
-        TextView textViewTWIDir;
+        TextView textViewTWIHumidity;
         public TodayWIHolder(@NonNull View itemView) {
             super(itemView);
             imageViewTWIIcon=itemView.findViewById(R.id.imageViewTDWIIcon);
@@ -86,7 +86,7 @@ public class TodayWIAdapter extends RecyclerView.Adapter<TodayWIAdapter.TodayWIH
             textViewTWICondition=itemView.findViewById(R.id.textViewTDWICondition);
             textViewTWITemp=itemView.findViewById(R.id.textViewTDWITemp);
             textViewTWIWindSpeed=itemView.findViewById(R.id.textViewTDWIWindSpeed);
-            textViewTWIDir=itemView.findViewById(R.id.textViewTDWIDir);
+            textViewTWIHumidity =itemView.findViewById(R.id.textViewTDWIHumidity);
         }
     }
 }

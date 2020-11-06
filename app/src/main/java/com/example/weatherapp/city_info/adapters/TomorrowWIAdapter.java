@@ -22,12 +22,10 @@ import java.util.List;
 public class TomorrowWIAdapter extends RecyclerView.Adapter<TomorrowWIAdapter.TodayWIHolder>  {
     private List<Tomorrow> tomorrowList;
     private Context context;
-    private WeatherInfo weatherInfo;
 
     public TomorrowWIAdapter(Context context, List<Tomorrow> tomorrowList) {
         this.tomorrowList = tomorrowList;
         this.context=context;
-        weatherInfo=new WeatherInfo();
     }
 
     @NonNull
@@ -41,7 +39,7 @@ public class TomorrowWIAdapter extends RecyclerView.Adapter<TomorrowWIAdapter.To
     public void onBindViewHolder(@NonNull TodayWIHolder holder, int position) {
         Tomorrow today = tomorrowList.get(position);
         holder.textViewTWIName.setText(today.getName());
-        holder.textViewTWICondition.setText(weatherInfo.getConditionInRussian(today.getPartOfDay().getCondition()));
+        holder.textViewTWICondition.setText(WeatherInfo.getConditionInRussian(today.getPartOfDay().getCondition()));
         String temp;
         if (today.getPartOfDay().getTempAvg()>0)
             temp="+%s";
@@ -49,7 +47,7 @@ public class TomorrowWIAdapter extends RecyclerView.Adapter<TomorrowWIAdapter.To
             temp="%s";
         holder.textViewTWITemp.setText(String.format(temp,today.getPartOfDay().getTempAvg()));
         holder.textViewTWIWindSpeed.setText(String.format("%s м/с",today.getPartOfDay().getWindSpeed()));
-        holder.textViewTWIDir.setText(weatherInfo.getWindInfoListInRussian(today.getPartOfDay().getWindDir()));
+        holder.textViewTWIHumidity.setText(String.format("%s %%",today.getPartOfDay().getHumidity()));
         GlideToVectorYou
                 .init()
                 .with(context)
@@ -77,7 +75,7 @@ public class TomorrowWIAdapter extends RecyclerView.Adapter<TomorrowWIAdapter.To
         TextView textViewTWICondition;
         TextView textViewTWITemp;
         TextView textViewTWIWindSpeed;
-        TextView textViewTWIDir;
+        TextView textViewTWIHumidity;
         public TodayWIHolder(@NonNull View itemView) {
             super(itemView);
             imageViewTWIIcon=itemView.findViewById(R.id.imageViewTDWIIcon);
@@ -85,7 +83,7 @@ public class TomorrowWIAdapter extends RecyclerView.Adapter<TomorrowWIAdapter.To
             textViewTWICondition=itemView.findViewById(R.id.textViewTDWICondition);
             textViewTWITemp=itemView.findViewById(R.id.textViewTDWITemp);
             textViewTWIWindSpeed=itemView.findViewById(R.id.textViewTDWIWindSpeed);
-            textViewTWIDir=itemView.findViewById(R.id.textViewTDWIDir);
+            textViewTWIHumidity =itemView.findViewById(R.id.textViewTDWIHumidity);
         }
     }
 }

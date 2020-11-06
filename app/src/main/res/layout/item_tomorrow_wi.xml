@@ -82,22 +82,22 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewTDWIWindSpeedTitle" />
 
         <TextView
-            android:id="@+id/textViewTWIDirTitle"
+            android:id="@+id/textViewTWIHumidityTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/twi_wind_dir_title"
+            android:text="@string/humidity_title"
             android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/imageViewTDWIIcon"
             app:layout_constraintTop_toBottomOf="@+id/textViewTDWITemp" />
 
         <TextView
-            android:id="@+id/textViewTDWIDir"
+            android:id="@+id/textViewTDWIHumidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/imageViewTDWIIcon"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTWIDirTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewTWIHumidityTitle" />
 
         <TextView
             android:id="@+id/textViewTDWIDate"

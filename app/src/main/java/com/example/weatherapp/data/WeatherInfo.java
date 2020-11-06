@@ -48,6 +48,7 @@ public class WeatherInfo {
 
         }
     };
+
     private static String weatherIcon= "https://yastatic.net/weather/i/icons/blueye/color/svg/%s.svg";
     public static String getWeatherIcon(String icon) {
         return String.format(weatherIcon, icon);

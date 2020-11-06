@@ -12,10 +12,10 @@
     <string name="TWIConditionTitle" translatable="false">Condition</string>
 
     <string name="label_time">Time</string>
-    <string name="humidity_title">Humidity:</string>
     <string name="city_wind_speed">Wind Speed</string>
     <string name="TWIWindSpeedTitle">Wind Speed</string>
     <string name="twi_wind_dir_title">Direction</string>
     <string name="city_wind_direction">Direction</string>
-    <string name="wi_pressure_title">Pressure</string>
+    <string name="pressure_title">Pressure</string>
+    <string name="humidity_title">Humidity</string>
 </resources>

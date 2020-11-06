@@ -8,9 +8,9 @@
     <string name="city_label">Город</string>
     <string name="TWIWindSpeedTitle">Скорость ветра</string>
     <string name="twi_wind_dir_title">Направление</string>
-    <string name="humidity_title">Влажность:</string>
+    <string name="humidity_title">Влажность</string>
     <string name="city_wind_speed">Скорость ветра</string>
     <string name="label_time">Время</string>
     <string name="city_wind_direction">Направление ветра</string>
-    <string name="wi_pressure_title">Давление</string>
+    <string name="pressure_title">Давление</string>
 </resources>

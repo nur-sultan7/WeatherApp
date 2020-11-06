@@ -37,8 +37,9 @@ public class ThreeDaysWIAdapter extends RecyclerView.Adapter<ThreeDaysWIAdapter.
     public void onBindViewHolder(@NonNull ThreeDaysVH holder, int position) {
         Day day = list.get(position);
         holder.textViewDay.setText(day.getName());
-        holder.textViewDayDate.setText(day.getData());
-        holder.textViewWindSpeed.setText(String.valueOf(day.getDayShort().getWindSpeed()));
+
+        holder.textViewDayDate.setText(String.format(day.getMonthAndDay()));
+        holder.textViewWindSpeed.setText(String.format("%s м/с",day.getDayShort().getWindSpeed()));
         holder.textViewTemp.setText(String.format("%+d",day.getDayShort().getTemp()));
         holder.textViewCondition.setText(WeatherInfo.getConditionInRussian(day.getDayShort().getCondition()));
         holder.textViewHumidity.setText(String.format("%s%%",day.getDayShort().getHumidity()));
