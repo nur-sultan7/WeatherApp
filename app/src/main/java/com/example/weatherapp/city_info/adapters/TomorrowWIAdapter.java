@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
-import com.example.weatherapp.city_info.data.Today;
 import com.example.weatherapp.city_info.data.Tomorrow;
 import com.example.weatherapp.data.WeatherInfo;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
@@ -81,12 +80,12 @@ public class TomorrowWIAdapter extends RecyclerView.Adapter<TomorrowWIAdapter.To
         TextView textViewTWIDir;
         public TodayWIHolder(@NonNull View itemView) {
             super(itemView);
-            imageViewTWIIcon=itemView.findViewById(R.id.imageViewTWIIcon);
-            textViewTWIName=itemView.findViewById(R.id.textViewTWIName);
-            textViewTWICondition=itemView.findViewById(R.id.textViewTWICondition);
-            textViewTWITemp=itemView.findViewById(R.id.textViewTWITemp);
-            textViewTWIWindSpeed=itemView.findViewById(R.id.textViewTWIWindSpeed);
-            textViewTWIDir=itemView.findViewById(R.id.textViewTWIDir);
+            imageViewTWIIcon=itemView.findViewById(R.id.imageViewTDWIIcon);
+            textViewTWIName=itemView.findViewById(R.id.textViewTDWIName);
+            textViewTWICondition=itemView.findViewById(R.id.textViewTDWICondition);
+            textViewTWITemp=itemView.findViewById(R.id.textViewTDWITemp);
+            textViewTWIWindSpeed=itemView.findViewById(R.id.textViewTDWIWindSpeed);
+            textViewTWIDir=itemView.findViewById(R.id.textViewTDWIDir);
         }
     }
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.weatherapp.MainViewModel;
 import com.example.weatherapp.R;
 import com.example.weatherapp.city_info.adapters.ThreeDaysWIAdapter;
 import com.example.weatherapp.city_info.data.Day;
+import com.example.weatherapp.data.WeatherInfo;
 import com.example.weatherapp.pojo.WeatherResponse;
 
 import java.util.ArrayList;
@@ -53,12 +55,19 @@ public class ThreeDaysWIFragment extends Fragment {
         viewModel= ViewModelProviders.of(this).get(MainViewModel.class);
         weatherResponse=viewModel.getWeatherCityByInfo(mParam1);
         List<Day> dayList=new ArrayList<>();
-        dayList.add(new Day("сегодня",
+        Time currentTime = new Time(Time.getCurrentTimezone());
+        currentTime.setToNow();
+
+        dayList.add(new Day(WeatherInfo.getDayOfWeek(currentTime.weekDay),
                 weatherResponse.getForecasts().get(0).getDate(),
                 weatherResponse.getForecasts().get(0).getParts().getDayShort()));
-        dayList.add(new Day("Завтра",
+        dayList.add(new Day(WeatherInfo.getDayOfWeek(currentTime.weekDay==6?0:currentTime.weekDay+1),
                 weatherResponse.getForecasts().get(1).getDate(),
                 weatherResponse.getForecasts().get(1).getParts().getDayShort()));
+        threeDaysWIAdapter=new ThreeDaysWIAdapter(dayList);
+        dayList.add(new Day(WeatherInfo.getDayOfWeek(currentTime.weekDay>=5?currentTime.weekDay-5:currentTime.weekDay),
+                weatherResponse.getForecasts().get(2).getDate(),
+                weatherResponse.getForecasts().get(2).getParts().getDayShort()));
         threeDaysWIAdapter=new ThreeDaysWIAdapter(dayList);
 
     }

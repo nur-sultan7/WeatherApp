@@ -36,6 +36,18 @@ public class WeatherInfo {
         put("w","западное");
         put("с","штиль");
     }};
+    private static Map<Integer,String> dayOfWeek = new HashMap<Integer, String>(){
+        {
+            put(0,"Воскресенье");
+            put(1,"Понедельник");
+            put(2,"Вторник");
+            put(3,"Среда");
+            put(4,"Четверг");
+            put(5,"Пятница");
+            put(6,"Суббота");
+
+        }
+    };
     private static String weatherIcon= "https://yastatic.net/weather/i/icons/blueye/color/svg/%s.svg";
     public static String getWeatherIcon(String icon) {
         return String.format(weatherIcon, icon);
@@ -48,5 +60,9 @@ public class WeatherInfo {
 
     public static String getWindInfoListInRussian(String windInfo) {
         return windInfoListInRussian.get(windInfo);
+    }
+    public static String getDayOfWeek(Integer dayNumber)
+    {
+        return dayOfWeek.get(dayNumber);
     }
 }

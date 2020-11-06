@@ -18,8 +18,6 @@ import com.example.weatherapp.pojo.Hour;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener;
 
-import java.util.List;
-
 public class TodayWIAdapter extends RecyclerView.Adapter<TodayWIAdapter.TodayWIHolder>  {
     private Today today;
     private Context context;
@@ -83,12 +81,12 @@ public class TodayWIAdapter extends RecyclerView.Adapter<TodayWIAdapter.TodayWIH
         TextView textViewTWIDir;
         public TodayWIHolder(@NonNull View itemView) {
             super(itemView);
-            imageViewTWIIcon=itemView.findViewById(R.id.imageViewTWIIcon);
-            textViewTWIName=itemView.findViewById(R.id.textViewTWIName);
-            textViewTWICondition=itemView.findViewById(R.id.textViewTWICondition);
-            textViewTWITemp=itemView.findViewById(R.id.textViewTWITemp);
-            textViewTWIWindSpeed=itemView.findViewById(R.id.textViewTWIWindSpeed);
-            textViewTWIDir=itemView.findViewById(R.id.textViewTWIDir);
+            imageViewTWIIcon=itemView.findViewById(R.id.imageViewTDWIIcon);
+            textViewTWIName=itemView.findViewById(R.id.textViewTDWIName);
+            textViewTWICondition=itemView.findViewById(R.id.textViewTDWICondition);
+            textViewTWITemp=itemView.findViewById(R.id.textViewTDWITemp);
+            textViewTWIWindSpeed=itemView.findViewById(R.id.textViewTDWIWindSpeed);
+            textViewTWIDir=itemView.findViewById(R.id.textViewTDWIDir);
         }
     }
 }

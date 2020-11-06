@@ -43,6 +43,7 @@ public class CityWeatherActivity extends AppCompatActivity {
     private TextView textViewHumidity;
     private TextView textViewWindSpeed;
     private TextView textViewWindDirection;
+    private TextView textViewPressure;
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +58,15 @@ public class CityWeatherActivity extends AppCompatActivity {
         imageViewCity=findViewById(R.id.imageViewCityWeatherIcon);
         textViewCityName=findViewById(R.id.textViewCityName);
         textViewCityTemp=findViewById(R.id.textViewCityTemp);
+        textViewPressure=findViewById(R.id.textViewCityPressure);
         textViewCityWeatherCondition=findViewById(R.id.textViewCityCondition);
         textViewCityName.setText(cityWeather.getInfo().getTzinfo().getName());
         textViewCityTemp.setText(String.format("%+d",cityWeather.getFact().getTemp()));
         textViewCityWeatherCondition.setText(WeatherInfo.getConditionInRussian(cityWeather.getFact().getCondition()));
         textViewWindDirection.setText(WeatherInfo.getWindInfoListInRussian(cityWeather.getFact().getWindDir()));
-        textViewWindSpeed.setText(String.valueOf(cityWeather.getFact().getWindSpeed()));
+        textViewWindSpeed.setText(String.format("%s м/с",cityWeather.getFact().getWindSpeed()));
         textViewHumidity.append(String.format(" %d%%",cityWeather.getFact().getHumidity()));
+        textViewPressure.setText(String.format("%d мм рт. ст.",cityWeather.getFact().getPressureMm()));
 
         GlideToVectorYou
                 .init()

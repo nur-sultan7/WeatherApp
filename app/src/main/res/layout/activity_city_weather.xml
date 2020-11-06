@@ -61,12 +61,14 @@
         android:id="@+id/tabLayoutCityWeatherInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@id/viewPagerCityWeatherInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCityPressureTitle"
         app:tabIndicatorColor="@color/colorPrimaryDark"
         app:tabTextAppearance="@style/MyCustomTextAppearance" />
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerCityWeatherInfo"
 
@@ -74,11 +76,12 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayoutCityWeatherInfo" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewCityWindSpeedTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -89,7 +92,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewCityCondition" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewCityWindDirTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -97,13 +100,13 @@
         android:text="@string/city_wind_direction"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewCityWindSpeedTitle" />
 
     <TextView
         android:id="@+id/textViewCityHumidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/city_humidity"
+        android:text="@string/humidity_title"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -114,28 +117,26 @@
         android:id="@+id/textViewCityWindSpeed"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewCityWindSpeedTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/textViewCityHumidity"
+        app:layout_constraintTop_toTopOf="@+id/textViewCityWindSpeedTitle" />
 
     <TextView
         android:id="@+id/textViewCityWindDirection"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewCityWindDirTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
+        app:layout_constraintStart_toStartOf="@+id/textViewCityHumidity"
+        app:layout_constraintTop_toTopOf="@+id/textViewCityWindDirTitle" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/textViewCityWindSpeedTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCityCondition" />
@@ -146,10 +147,52 @@
         android:layout_height="1dp"
         android:layout_marginEnd="16dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/textViewCityWindDirTitle"
         app:layout_constraintEnd_toEndOf="@+id/textViewCityWindSpeed"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/textViewCityWindSpeedTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCityWindSpeedTitle" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/textViewCityPressureTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewCityWindDirTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCityWindDirTitle" />
+
+    <TextView
+        android:id="@+id/textViewCityPressureTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/wi_pressure_title"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCityWindDirTitle" />
+
+    <TextView
+        android:id="@+id/textViewCityPressure"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewCityPressureTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewCityHumidity"
+        app:layout_constraintTop_toTopOf="@+id/textViewCityPressureTitle" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tabLayoutCityWeatherInfo"
+        app:layout_constraintStart_toStartOf="@+id/textViewCityPressureTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCityPressureTitle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

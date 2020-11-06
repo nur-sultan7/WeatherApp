@@ -9,12 +9,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="TWIWindSpeedTitle">Wind Speed</string>
     <string name="TWIConditionTitle" translatable="false">Condition</string>
 
-    <string name="twi_wind_dir_title">Direction</string>
     <string name="label_time">Time</string>
-    <string name="city_wind_speed">Скорость ветра (в м/с)</string>
-    <string name="city_wind_direction">Направление ветра</string>
-    <string name="city_humidity">Влажность:</string>
+    <string name="humidity_title">Humidity:</string>
+    <string name="city_wind_speed">Wind Speed</string>
+    <string name="TWIWindSpeedTitle">Wind Speed</string>
+    <string name="twi_wind_dir_title">Direction</string>
+    <string name="city_wind_direction">Direction</string>
+    <string name="wi_pressure_title">Pressure</string>
 </resources>

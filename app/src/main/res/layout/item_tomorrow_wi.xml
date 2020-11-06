@@ -12,16 +12,16 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textViewTWICondition"
+            android:id="@+id/textViewTDWICondition"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/TWIConditionTitle"
             android:textStyle="bold"
             android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewTWIIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewTDWIIcon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/imageViewTWIIcon"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewTWIIcon" />
+            app:layout_constraintStart_toStartOf="@+id/imageViewTDWIIcon"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewTDWIIcon" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
@@ -31,17 +31,17 @@
             app:layout_constraintGuide_percent="0.18" />
 
         <TextView
-            android:id="@+id/textViewTWITemp"
+            android:id="@+id/textViewTDWITemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="28sp"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewTWIIcon"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewTDWIIcon"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageViewTWIIcon"
+            android:id="@+id/imageViewTDWIIcon"
             android:layout_width="120dp"
             android:layout_height="80dp"
 
@@ -51,7 +51,7 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/textViewTWIName"
+            android:id="@+id/textViewTDWIName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/label_today"
@@ -64,22 +64,22 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textViewTWIWindSpeedTitle"
+            android:id="@+id/textViewTDWIWindSpeedTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:text="@string/TWIWindSpeedTitle"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTWITemp" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewTDWITemp" />
 
         <TextView
-            android:id="@+id/textViewTWIWindSpeed"
+            android:id="@+id/textViewTDWIWindSpeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTWIWindSpeedTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewTDWIWindSpeedTitle" />
 
         <TextView
             android:id="@+id/textViewTWIDirTitle"
@@ -87,25 +87,25 @@
             android:layout_height="wrap_content"
             android:text="@string/twi_wind_dir_title"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewTWIIcon"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTWITemp" />
+            app:layout_constraintEnd_toStartOf="@+id/imageViewTDWIIcon"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTDWITemp" />
 
         <TextView
-            android:id="@+id/textViewTWIDir"
+            android:id="@+id/textViewTDWIDir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewTWIIcon"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewTDWIIcon"
             app:layout_constraintTop_toBottomOf="@+id/textViewTWIDirTitle" />
 
         <TextView
-            android:id="@+id/textViewTWIDate"
+            android:id="@+id/textViewTDWIDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTWIName" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewTDWIName" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
